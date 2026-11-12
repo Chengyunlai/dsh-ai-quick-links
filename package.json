@@ -1,0 +1,61 @@
+{
+  "name": "@local/dsh-ai-quick-links",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pins a strip of online AI sites to the window edge and opens them in the default browser.",
+  "license": "MIT",
+  "author": "Cyrus Cheng",
+  "homepage": "https://github.com/Chengyunlai/dsh-ai-quick-links#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chengyunlai/dsh-ai-quick-links.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chengyunlai/dsh-ai-quick-links/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "cordis",
+    "plugin",
+    "ai",
+    "ai-tools",
+    "quick-links",
+    "launcher"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md",
+    "build-icons.mjs",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "icons/*.svg",
+    "index.js",
+    "locale/*.json"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    }
+  },
+  "scripts": {
+    "build:icons": "node build-icons.mjs"
+  }
+}
