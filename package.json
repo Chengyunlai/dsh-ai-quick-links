@@ -1,6 +1,6 @@
 {
   "name": "@yunlai/dsh-ai-quick-links",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "DeepSeek Harness 插件：固定在窗口右下角的 AI 快捷入口，内置 20 个国产/海外 AI 对话网站。AI quick links for DeepSeek Harness.",
   "license": "MIT",
