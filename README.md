@@ -20,6 +20,31 @@
 
 `@yunlai/dsh-ai-quick-links` 把 20 个常用 AI 对话网站（国产 + 海外）收进窗口右下角的一条快捷栏：点图标直接用默认浏览器打开；滑杆面板里勾选哪 4 个上栏（最多 4 个、至少 1 个）；选择保存在本地。20 个品牌图标以 SVG data URI 内联，运行时不发任何网络请求。
 
+## 📸 界面预览
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Chengyunlai/dsh-ai-quick-links/main/docs/screenshots/dock.webp" alt="快捷栏：4 个入口 + 选择 + 收起" width="640" />
+</p>
+
+<p align="center">
+  <em>快捷栏：四个品牌入口，右侧是选择按钮与收起按钮</em>
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Chengyunlai/dsh-ai-quick-links/main/docs/screenshots/picker.webp" alt="选择面板：按国产 / 海外分组，最多勾选 4 个" width="330" />
+</p>
+
+<p align="center">
+  <em>选择面板：点图标直接访问，勾选右侧圆点加入快捷栏（最多 4 个）</em>
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Chengyunlai/dsh-ai-quick-links/main/docs/screenshots/collapsed.webp" alt="收起后的圆形启动按钮" width="150" />
+</p>
+
+<p align="center">
+  <em>收起后只留一个圆形启动按钮</em>
+</p>
 
 ## ✨ 特性
 
@@ -111,6 +136,7 @@ git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git
 | `build-icons.mjs` | 把 `icons/` 内联进 `client.js`（`node build-icons.mjs`）。 |
 | `locale/` | 插件管理页使用的中英文标题与描述。 |
 | `icon.svg` | 插件图标。 |
+| `docs/screenshots/` | 真实运行界面的截图（快捷栏 / 选择面板 / 收起态）。 |
 | `.github/workflows/` | `ci.yml`（PR 校验）与 `release.yml`（自动发 npm + provenance）。 |
 | `scripts/` | 包契约校验与发布版本决策脚本。 |
 
@@ -122,9 +148,9 @@ git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git
 
 ## ✅ 验证状态
 
-- **已验证**（macOS 桌面版 DeepSeek Harness）：bundle 安装、客户端模块加载、`shell.overlay` 入口 `active`、20 个图标 SVG 合法、默认 4 个、选择持久化。
-- **CI 已验证**：GitHub Actions `CI` 通过（包名/模块 id/patch 行一致性、图标齐全、`build-icons` 幂等、`npm pack` 内容）；`Release` 首次运行按预期在「包尚未发布到 npm」处跳过并给出警告。
-- **未验证**：逐像素的视觉与交互（开发环境无浏览器控制、无看图能力）；海外站点在受限网络下未逐一实测；目前只有中英文文案。
+- **已验证**（macOS 桌面版 DeepSeek Harness 0.2.2-rc.1 / macOS 26.3）：bundle 安装、客户端模块加载、`shell.overlay` 入口 `active`、20 个图标 SVG 合法、默认 4 个、选择持久化；上方截图来自真实运行界面（浅色/深色主题下的实际渲染）。
+- **CI 已验证**：GitHub Actions `CI` 通过（包名/模块 id/patch 行一致性、图标齐全、`build-icons` 幂等、`npm pack` 内容）。
+- **未验证**：海外站点在受限网络下未逐一实测；20 个入口全部点击跳转未逐条人工确认；目前只有中英文文案。
 - **兼容性**：桌面应用窗口 origin 为 `dsh-app://app`，选择可跨重启保留；Web 版若每次端口变化，新 origin 下会回到默认四个。
 
 ---
@@ -134,6 +160,20 @@ git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git
 ### AI Quick Links
 
 A pinned launcher for 20 domestic and international AI chat sites, docked at the bottom-right corner of the DeepSeek Harness Web UI. One click opens the site in your default browser.
+
+**Screenshots**
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Chengyunlai/dsh-ai-quick-links/main/docs/screenshots/dock.webp" alt="The dock with four brand entries, the picker control and the collapse control" width="640" />
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Chengyunlai/dsh-ai-quick-links/main/docs/screenshots/picker.webp" alt="Picker panel grouped by domestic and international sites, four selections" width="330" />
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Chengyunlai/dsh-ai-quick-links/main/docs/screenshots/collapsed.webp" alt="Collapsed state: one round launcher button" width="150" />
+</p>
 
 **Features**
 
