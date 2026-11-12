@@ -1,22 +1,25 @@
 # AI 快捷入口
 
-<p align="center">
-  <img src="icon.svg" width="88" height="88" alt="AI 快捷入口图标" />
-</p>
+**固定在窗口右下角的 AI 快捷入口栏 —— 一点直达 20 个国产与海外 AI 对话网站。**
 
 <p align="center">
-  固定在你窗口右下角的 AI 快捷入口栏 —— 一点直达 20 个国产与海外 AI 对话网站。
+  <img src="https://raw.githubusercontent.com/Chengyunlai/dsh-ai-quick-links/main/icon.svg" width="88" height="88" alt="AI 快捷入口图标" />
 </p>
 
 <p align="center">
   <a href="https://github.com/Chengyunlai/dsh-ai-quick-links/actions/workflows/ci.yml"><img src="https://github.com/Chengyunlai/dsh-ai-quick-links/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square" alt="MIT License" /></a>
+  <a href="https://github.com/Chengyunlai/dsh-ai-quick-links/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square" alt="MIT License" /></a>
   <img src="https://img.shields.io/badge/DeepSeek%20Harness-plugin-4D6BFE?style=flat-square" alt="DeepSeek Harness plugin" />
   <a href="https://www.npmjs.com/package/@yunlai/dsh-ai-quick-links"><img src="https://img.shields.io/npm/v/@yunlai/dsh-ai-quick-links?style=flat-square" alt="npm version" /></a>
   <a href="https://www.npmjs.com/package/@yunlai/dsh-ai-quick-links"><img src="https://img.shields.io/npm/dm/@yunlai/dsh-ai-quick-links?style=flat-square" alt="npm downloads" /></a>
 </p>
 
 > 一个 DeepSeek Harness 的本地 bundle 插件：在 Web UI 右下角固定一条快捷栏，点图标用系统默认浏览器打开对应的 AI 网站。
+
+## 这是什么
+
+`@yunlai/dsh-ai-quick-links` 把 20 个常用 AI 对话网站（国产 + 海外）收进窗口右下角的一条快捷栏：点图标直接用默认浏览器打开；滑杆面板里勾选哪 4 个上栏（最多 4 个、至少 1 个）；选择保存在本地。20 个品牌图标以 SVG data URI 内联，运行时不发任何网络请求。
+
 
 ## ✨ 特性
 
@@ -113,9 +116,9 @@ git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git
 
 ## 🎨 图标与许可
 
-- 代码以 [MIT](LICENSE) 协议开源，Copyright © 2026 Cyrus Cheng。
+- 代码以 [MIT](https://github.com/Chengyunlai/dsh-ai-quick-links/blob/main/LICENSE) 协议开源，Copyright © 2026 Cyrus Cheng。
 - 品牌图标来自 [LobeHub Icons](https://github.com/lobehub/lobe-icons)（MIT）。
-- 所有品牌名称与图标归各自所有者，仅用于标识对应网站；本项目与这些网站没有任何关联。详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+- 所有品牌名称与图标归各自所有者，仅用于标识对应网站；本项目与这些网站没有任何关联。详见 [THIRD_PARTY_NOTICES.md](https://github.com/Chengyunlai/dsh-ai-quick-links/blob/main/THIRD_PARTY_NOTICES.md)。
 
 ## ✅ 验证状态
 
