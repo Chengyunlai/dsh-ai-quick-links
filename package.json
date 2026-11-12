@@ -1,5 +1,5 @@
 {
-  "name": "dsh-ai-quick-links",
+  "name": "@yunlai/dsh-ai-quick-links",
   "version": "0.1.0",
   "type": "module",
   "description": "Pins a strip of online AI sites to the window edge and opens them in the default browser.",

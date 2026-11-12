@@ -10,7 +10,7 @@
  * change the shortcuts; the client entry hot-reloads when this file changes.
  */
 window.__ModuleLoader__.load({
-  id: 'dsh-ai-quick-links',
+  id: '@yunlai/dsh-ai-quick-links',
   factory(require) {
     const React = require('react');
     const h = React.createElement;
