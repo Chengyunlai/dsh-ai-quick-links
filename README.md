@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/Chengyunlai/dsh-ai-quick-links/actions/workflows/ci.yml"><img src="https://github.com/Chengyunlai/dsh-ai-quick-links/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square" alt="MIT License" /></a>
   <img src="https://img.shields.io/badge/DeepSeek%20Harness-plugin-4D6BFE?style=flat-square" alt="DeepSeek Harness plugin" />
   <a href="https://www.npmjs.com/package/@yunlai/dsh-ai-quick-links"><img src="https://img.shields.io/npm/v/@yunlai/dsh-ai-quick-links?style=flat-square" alt="npm version" /></a>
@@ -84,6 +85,18 @@ git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git
 - 保存后约 0.5 秒客户端热重载，不需要重启。
 - 换图标：把 SVG 放进 `icons/`，在 `build-icons.mjs` 的 `ICONS` 映射里加一行，运行 `node build-icons.mjs` 重新内联。
 
+## 🤖 自动发布（GitHub Actions）
+
+合并到 `main` 后，`Release` workflow 自动完成发布，不需要本地打 tag：
+
+1. **算版本**：`package.json` 的版本如果已经在 npm 且已打 `vX` tag → 自动 patch +1，提交 `chore(release): vX [release]`；如果你在 PR 里手动改成了目标版本（如 `0.2.0`），就按你的版本发布。
+2. **校验**：调用 `CI` 校验包名 / 客户端模块 id / patch 行一致性、图标齐全、`build-icons` 幂等、`npm pack` 内容。
+3. **发布**：`npm publish --provenance --access public`（npm trusted publishing，无长期 token），然后打 `vX` tag 并创建 GitHub Release。
+
+- 手动触发：Actions → **Release** → *Run workflow*。
+- 首次发布需要手动一次（npm 登录 + OTP）；之后在 npm 包设置 → **Trusted publishing** 里添加：Repository `Chengyunlai/dsh-ai-quick-links`，Workflow `release.yml`。
+- 想改成「打 tag 才发布」：把 `release.yml` 的触发改成 `push: tags: ['v*']` 即可。
+
 ## 📁 项目结构
 
 | 文件 | 作用 |
@@ -95,6 +108,8 @@ git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git
 | `build-icons.mjs` | 把 `icons/` 内联进 `client.js`（`node build-icons.mjs`）。 |
 | `locale/` | 插件管理页使用的中英文标题与描述。 |
 | `icon.svg` | 插件图标。 |
+| `.github/workflows/` | `ci.yml`（PR 校验）与 `release.yml`（自动发 npm + provenance）。 |
+| `scripts/` | 包契约校验与发布版本决策脚本。 |
 
 ## 🎨 图标与许可
 
@@ -132,6 +147,10 @@ From source: `git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git` a
 **Customize**
 
 Edit `LINKS`, `DEFAULT_SELECTION` and `MAX_SLOTS` at the top of `client.js`; changes hot-reload in about 0.5 s. To change icons, drop SVGs into `icons/`, extend the mapping in `build-icons.mjs`, and run `node build-icons.mjs`.
+
+**Release automation**
+
+Merging to `main` publishes automatically: the `Release` workflow bumps the patch version when the current version is already on npm (or publishes a version you bumped in the PR), runs CI, publishes with npm provenance through trusted publishing, then tags `vX` and creates a GitHub Release. The first publish is manual; then configure a trusted publisher for repository `Chengyunlai/dsh-ai-quick-links` and workflow `release.yml` in the npm package settings.
 
 **Status**
 

@@ -1,0 +1,74 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: release-main
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    uses: ./.github/workflows/ci.yml
+
+  release:
+    name: Publish to npm
+    needs: verify
+    if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[release]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Install a current npm for trusted publishing
+        run: npm install --global npm@12.2.1 --registry=https://registry.npmjs.org
+      - name: Fetch tags
+        run: git fetch --tags --force
+      - name: Check the package exists on npm
+        id: registry
+        run: |
+          if npm view "@yunlai/dsh-ai-quick-links" version --registry=https://registry.npmjs.org >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::@yunlai/dsh-ai-quick-links is not on npm yet. Publish 0.1.0 manually, then configure npm trusted publishing for this repository and the release.yml workflow. Skipping this release."
+          fi
+      - name: Resolve the release version
+        if: steps.registry.outputs.exists == 'true'
+        id: version
+        run: node scripts/release-decision.mjs
+      - name: Commit the automatic patch bump
+        if: steps.version.outputs.bump == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "chore(release): v${{ steps.version.outputs.version }} [release]"
+          git push origin HEAD:main
+      - name: Publish the package
+        if: steps.version.outputs.action == 'publish'
+        run: npm publish --provenance --access public --registry=https://registry.npmjs.org/
+      - name: Tag and create the GitHub release
+        if: steps.version.outputs.version != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if ! git rev-parse "v$VERSION" >/dev/null 2>&1; then
+            git tag "v$VERSION"
+            git push origin "v$VERSION"
+          fi
+          if ! gh release view "v$VERSION" >/dev/null 2>&1; then
+            gh release create "v$VERSION" --generate-notes --title "v$VERSION"
+          fi

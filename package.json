@@ -55,9 +55,12 @@
     }
   },
   "scripts": {
-    "build:icons": "node build-icons.mjs"
+    "build:icons": "node build-icons.mjs",
+    "check": "node scripts/check-package.mjs",
+    "verify": "npm run check && node --check client.js && node --check build-icons.mjs && node build-icons.mjs && git diff --exit-code -- client.js"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
