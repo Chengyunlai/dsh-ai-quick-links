@@ -120,6 +120,7 @@ git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git
 ## ✅ 验证状态
 
 - **已验证**（macOS 桌面版 DeepSeek Harness）：bundle 安装、客户端模块加载、`shell.overlay` 入口 `active`、20 个图标 SVG 合法、默认 4 个、选择持久化。
+- **CI 已验证**：GitHub Actions `CI` 通过（包名/模块 id/patch 行一致性、图标齐全、`build-icons` 幂等、`npm pack` 内容）；`Release` 首次运行按预期在「包尚未发布到 npm」处跳过并给出警告。
 - **未验证**：逐像素的视觉与交互（开发环境无浏览器控制、无看图能力）；海外站点在受限网络下未逐一实测；目前只有中英文文案。
 - **兼容性**：桌面应用窗口 origin 为 `dsh-app://app`，选择可跨重启保留；Web 版若每次端口变化，新 origin 下会回到默认四个。
 
