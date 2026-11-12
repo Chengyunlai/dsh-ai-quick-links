@@ -11,7 +11,8 @@
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square" alt="MIT License" /></a>
   <img src="https://img.shields.io/badge/DeepSeek%20Harness-plugin-4D6BFE?style=flat-square" alt="DeepSeek Harness plugin" />
-  <img src="https://img.shields.io/badge/version-0.1.0-f59e0b?style=flat-square" alt="Version 0.1.0" />
+  <a href="https://www.npmjs.com/package/dsh-ai-quick-links"><img src="https://img.shields.io/npm/v/dsh-ai-quick-links?style=flat-square" alt="npm version" /></a>
+  <a href="https://www.npmjs.com/package/dsh-ai-quick-links"><img src="https://img.shields.io/npm/dm/dsh-ai-quick-links?style=flat-square" alt="npm downloads" /></a>
 </p>
 
 > 一个 DeepSeek Harness 的本地 bundle 插件：在 Web UI 右下角固定一条快捷栏，点图标用系统默认浏览器打开对应的 AI 网站。
@@ -36,11 +37,17 @@
 
 ### 安装
 
+**从 npm 安装（推荐）**
+
+在 Harness 里让插件管理器安装 `dsh-ai-quick-links`（`install_bundle`，target 为 `dsh-ai-quick-links`；如果默认 registry 搜不到，再传入 `registry: https://registry.npmjs.org/`）。安装写入你的 profile，之后每次启动都在右下角出现。
+
+**从源码安装（本地开发）**
+
 ```bash
 git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git
 ```
 
-然后在 Harness 中把克隆下来的目录作为**本地 bundle** 安装（插件管理器 `install_bundle`，target 指向该目录）。安装写入你的 profile，之后每次启动都会在右下角出现。
+把克隆目录作为本地 bundle 安装（`install_bundle`，target 指向该目录绝对路径）。
 
 ## 🖱️ 使用
 
@@ -118,11 +125,9 @@ A pinned launcher for 20 domestic and international AI chat sites, docked at the
 
 **Install**
 
-```bash
-git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git
-```
+From npm: install `dsh-ai-quick-links` with the plugin manager (`install_bundle`, target = `dsh-ai-quick-links`).
 
-Install the cloned directory as a local bundle in DeepSeek Harness (plugin manager `install_bundle`, target = the directory).
+From source: `git clone https://github.com/Chengyunlai/dsh-ai-quick-links.git` and install the cloned directory as a local bundle.
 
 **Customize**
 
